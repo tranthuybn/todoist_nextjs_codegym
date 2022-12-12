@@ -4,9 +4,4 @@ export const mainProjects = [
   { key: 'today', name: 'Today', icon: FaRegCalendar },
   { key: 'upcoming', name: 'Upcoming', icon: FaRegCalendarAlt },
 ];
-export const themes = [
-  { key: 'todoist' },
-  { key: 'noir' },
-  { key: 'tangerine' },
-  { key: 'neutral' },
-];
+export const themes = [{ key: 'todoist' }, { key: 'noir' }, { key: 'tangerine' }];
