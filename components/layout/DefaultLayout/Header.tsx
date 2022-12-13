@@ -64,20 +64,27 @@ function Header() {
               <button onClick={() => setShowThemes(!showThemes)}>
                 <VscSymbolColor />
               </button>
+
               {showThemes && (
-                <ul className="theme__selection">
-                  {themes.map((theme) => (
-                    <li
-                      className="theme__item"
-                      key={theme.key}
-                      onClick={() => {
-                        setTheme(`${theme.key}`);
-                      }}
-                    >
-                      {theme.key}
-                    </li>
-                  ))}
-                </ul>
+                <>
+                  <span
+                    onClick={() => setShowThemes(!showThemes)}
+                    className="theme__selection-overlay"
+                  ></span>
+                  <ul className="theme__selection">
+                    {themes.map((theme) => (
+                      <li
+                        className="theme__item"
+                        key={theme.key}
+                        onClick={() => {
+                          setTheme(`${theme.key}`);
+                        }}
+                      >
+                        {theme.key}
+                      </li>
+                    ))}
+                  </ul>
+                </>
               )}
             </li>
           </ul>

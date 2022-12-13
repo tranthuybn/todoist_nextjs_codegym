@@ -28,8 +28,14 @@ function Tasks() {
               <div>
                 <span>{task.task}</span>
                 <span className="task-description">{task.description}</span>
-                {moment(task.date, 'DD/MM/YYYY').diff(moment(), 'day') < 0 && (
-                  <span className="task-date-desc">
+                {selectedProject === 'upcoming' && (
+                  <span
+                    className={
+                      moment(task.date, 'DD/MM/YYYY').diff(moment(), 'day') <= 2
+                        ? 'warning task-date-desc'
+                        : 'task-date-desc'
+                    }
+                  >
                     {moment(task.date, 'DD/MM/YYYY').format('DD MMM')}
                   </span>
                 )}

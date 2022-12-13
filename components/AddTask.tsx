@@ -16,7 +16,7 @@ function AddTask({ shouldShowAddTask = true, showQuickAddTask, setShowQuickAddTa
   const [showAddTask, setShowAddTask] = useState(true);
   const [task, setTask] = useState('');
   const [description, setDescription] = useState('');
-  const [project, setProject] = useState<IProject>({ ...projectInit });
+  const [project, setProject] = useState<IProject>(projectInit);
   const [taskDate, setTaskDate] = useState('');
   const [showProjectSelection, setShowProjectSelection] = useState(false);
   const [showTaskDate, setShowTaskDate] = useState(false);
@@ -43,7 +43,7 @@ function AddTask({ shouldShowAddTask = true, showQuickAddTask, setShowQuickAddTa
         })
         .then(() => {
           setTask('');
-          setProject({ ...projectInit });
+          setProject(projectInit);
           setDescription('');
           setShowProjectSelection(false);
           setShowAddTask(!showAddTask);

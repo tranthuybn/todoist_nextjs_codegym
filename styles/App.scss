@@ -182,6 +182,12 @@ $icon-upcoming: #692fc2;
 
 /* theme
   ============================================ */
+.theme__selection-overlay {
+  @include overlay();
+  position: fixed;
+  z-index: 0;
+  background-color: transparent;
+}
 .theme {
   &.todoist {
     .header {
@@ -806,7 +812,7 @@ $icon-upcoming: #692fc2;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
-    .task-date-desc {
+    .task-date-desc.warning {
       color: $general-bg;
     }
   }
