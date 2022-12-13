@@ -1,17 +1,11 @@
 import { useEffect } from 'react';
-
+import moment from 'moment';
 import DefaultLayout from '~/components/layout/DefaultLayout';
 import { useProjectsValue, useSelectedProjectValue } from '~/context';
 import { useTasks } from '~/hooks';
 import Checkbox from '~/components/Checkbox';
 import AddTask from '~/components/AddTask';
 import { getSelectedProjectName } from '~/check';
-
-interface ITask {
-  task: string;
-  id: string;
-}
-
 function Tasks() {
   const { projects } = useProjectsValue();
   const { selectedProject } = useSelectedProjectValue();
@@ -33,7 +27,12 @@ function Tasks() {
               <Checkbox id={task.id} />
               <div>
                 <span>{task.task}</span>
-                <span className="tasks__list-description">{task.description}</span>
+                <span className="task-description">{task.description}</span>
+                {moment(task.date, 'DD/MM/YYYY').diff(moment(), 'day') < 0 && (
+                  <span className="task-date-desc">
+                    {moment(task.date, 'DD/MM/YYYY').format('DD MMM')}
+                  </span>
+                )}
               </div>
             </li>
           ))}

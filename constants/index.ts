@@ -5,3 +5,19 @@ export const mainProjects = [
   { key: 'upcoming', name: 'Upcoming', icon: FaRegCalendarAlt },
 ];
 export const themes = [{ key: 'todoist' }, { key: 'noir' }, { key: 'tangerine' }];
+export const initialTask = {
+  id: '',
+  task: '',
+  projectID: '',
+  archived: false,
+  date: '',
+  description: '',
+  userID: '',
+};
+
+export const projectInit = {
+  projectID: '',
+  name: '',
+  userID: '',
+  docId: '',
+};

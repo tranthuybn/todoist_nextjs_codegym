@@ -7,25 +7,25 @@ import { FaRegCalendarAlt } from 'react-icons/fa';
 
 import ProjectSelection from './ProjectSelection';
 import TaskDate from './TaskDate';
-import { useSelectedProjectValue, useProjectsValue } from '~/context';
+import { useSelectedProjectValue } from '~/context';
+import { projectInit } from '~/constants';
+import { IProject } from '~/interface';
+
 function AddTask({ shouldShowAddTask = true, showQuickAddTask, setShowQuickAddTask }: any) {
   const [showAddTaskMain, setShowAddTaskMain] = useState(false);
   const [showAddTask, setShowAddTask] = useState(true);
   const [task, setTask] = useState('');
   const [description, setDescription] = useState('');
-  const [project, setProject] = useState('');
+  const [project, setProject] = useState<IProject>({ ...projectInit });
   const [taskDate, setTaskDate] = useState('');
   const [showProjectSelection, setShowProjectSelection] = useState(false);
   const [showTaskDate, setShowTaskDate] = useState(false);
   const { selectedProject } = useSelectedProjectValue();
-  const { projects } = useProjectsValue();
   const addTask = () => {
-    const projectID = project || selectedProject;
+    const projectID = project.projectID || selectedProject;
     let collatedDate = '';
     if (projectID === 'today') {
       collatedDate = moment().format('DD/MM/YYYY');
-    } else if (projectID === 'upcoming') {
-      collatedDate = moment().add(7, 'days').format('DD/MM/YYYY');
     }
     return (
       task &&
@@ -43,7 +43,7 @@ function AddTask({ shouldShowAddTask = true, showQuickAddTask, setShowQuickAddTa
         })
         .then(() => {
           setTask('');
-          setProject('');
+          setProject({ ...projectInit });
           setDescription('');
           setShowProjectSelection(false);
           setShowAddTask(!showAddTask);
@@ -92,7 +92,7 @@ function AddTask({ shouldShowAddTask = true, showQuickAddTask, setShowQuickAddTa
                 <VscCircleFilled />
               </span>
 
-              <span>Project</span>
+              <span>{project.name ? project.name : 'Project'}</span>
               <ProjectSelection
                 setProject={setProject}
                 showProjectSelection={showProjectSelection}
@@ -103,7 +103,7 @@ function AddTask({ shouldShowAddTask = true, showQuickAddTask, setShowQuickAddTa
               <span>
                 <FaRegCalendarAlt />
               </span>
-              <span>Due date</span>
+              <span>{taskDate ? taskDate : 'Due date'}</span>
             </button>
             <TaskDate
               setTaskDate={setTaskDate}
@@ -124,6 +124,7 @@ function AddTask({ shouldShowAddTask = true, showQuickAddTask, setShowQuickAddTa
               Cancel
             </button>
             <button
+              disabled={!task}
               className="add-task__submit"
               onClick={() => {
                 showQuickAddTask ? addTask() && setShowQuickAddTask(false) : addTask();

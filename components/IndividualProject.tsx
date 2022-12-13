@@ -7,7 +7,8 @@ function IndividualProject({ project }: any) {
   const [showMenuSetting, setShowMenuSetting] = useState(false);
   const { projects, setProjects } = useProjectsValue();
   const { setSelectedProject } = useSelectedProjectValue();
-  const [showConfirm, setShowConfirm] = useState(false);
+  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+  const [showConfirmArchive, setShowConfirmArchive] = useState(false);
   const handleDeleteProject = async () => {
     await deleteProject(project.docId);
     setProjects([...projects]);
@@ -34,34 +35,67 @@ function IndividualProject({ project }: any) {
       >
         <VscEllipsis />
         {showMenuSetting && (
-          <ul className="project-menu-setting">
-            <li>
-              <div role="button" onClick={() => setShowConfirm(!showConfirm)}>
-                <span>
-                  <VscTrash />
-                </span>
-                <span>Delete project</span>
-              </div>
-            </li>
-            <li>
-              <div role="button" onClick={handleArchiveProject}>
-                <span>
-                  <VscArchive />
-                </span>
-                <span>Archive Project</span>
-              </div>
-            </li>
-          </ul>
+          <>
+            <span
+              className="project-menu-setting__overlay"
+              onClick={() => setShowMenuSetting(!showMenuSetting)}
+            ></span>
+            <ul className="project-menu-setting">
+              <li>
+                <div role="button" onClick={() => setShowConfirmDelete(!showConfirmDelete)}>
+                  <span>
+                    <VscTrash />
+                  </span>
+                  <span>Delete project</span>
+                </div>
+              </li>
+              <li>
+                <div role="button" onClick={() => setShowConfirmArchive(!showConfirmArchive)}>
+                  <span>
+                    <VscArchive />
+                  </span>
+                  <span>Archive Project</span>
+                </div>
+              </li>
+            </ul>
+          </>
         )}
       </span>
-      {showConfirm && (
-        <div className="project-delete-modal">
-          <span className="project-delete-modal__inner">
+      {showConfirmDelete && (
+        <div className="project-custom-modal">
+          <span
+            className="project-custom-modal__overlay"
+            onClick={() => setShowConfirmDelete(!showConfirmDelete)}
+          ></span>
+          <span className="project-custom-modal__inner">
             <h3>Delete project?</h3>
             <p>{`Are you sure you want to delete ${project.name}`}</p>
-            <span onClick={() => setShowConfirm(!showConfirm)}>Cancel</span>
+            <span onClick={() => setShowConfirmDelete(!showConfirmDelete)}>Cancel</span>
             <button onClick={handleDeleteProject}>Delete</button>
-            <i onClick={() => setShowConfirm(!showConfirm)} className="project-delete-modal__close">
+            <i
+              onClick={() => setShowConfirmDelete(!showConfirmDelete)}
+              className="project-custom-modal__close"
+            >
+              <VscClose />
+            </i>
+          </span>
+        </div>
+      )}
+      {showConfirmArchive && (
+        <div className="project-custom-modal">
+          <span
+            className="project-custom-modal__overlay"
+            onClick={() => setShowConfirmArchive(!showConfirmArchive)}
+          ></span>
+          <span className="project-custom-modal__inner">
+            <h3>Archived project?</h3>
+            <p>{`Are you sure you want to archive ${project.name}`}</p>
+            <span onClick={() => setShowConfirmArchive(!showConfirmArchive)}>Cancel</span>
+            <button onClick={handleArchiveProject}>Archive</button>
+            <i
+              onClick={() => setShowConfirmArchive(!showConfirmArchive)}
+              className="project-custom-modal__close"
+            >
               <VscClose />
             </i>
           </span>

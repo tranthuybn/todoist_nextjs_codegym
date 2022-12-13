@@ -100,7 +100,7 @@ $icon-upcoming: #692fc2;
 }
 
 @mixin cancel() {
-  color: #555;
+  color: #000;
   cursor: pointer;
   font-size: 14px;
   margin-right: 5px;
@@ -108,6 +108,10 @@ $icon-upcoming: #692fc2;
   padding: 6px 12px 7px 12px;
   border: 1px solid transparent;
   border-radius: 5px;
+  line-height: 17px;
+  &:hover {
+    background-color: #e5e5e5;
+  }
 }
 
 @mixin transparent-button() {
@@ -157,8 +161,8 @@ $icon-upcoming: #692fc2;
   top: 0;
   left: 0;
   z-index: 2000;
-  -webkit-transition: opacity 0.2s ease-in;
-  transition: opacity 0.2s ease-in;
+  -webkit-transition: all 0.5s ease-in;
+  transition: all 0.5s ease-in;
   height: calc(100vh);
   width: 100vw;
 }
@@ -173,6 +177,7 @@ $icon-upcoming: #692fc2;
   top: 30%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -30%);
+  transition: background-color 0.5s;
 }
 
 /* theme
@@ -363,8 +368,9 @@ $icon-upcoming: #692fc2;
   padding: 74px 24px 0 24px;
   border-right: $general-border;
   background-color: #fafafa;
+  z-index: 300;
 
-  @include mq('500px') {
+  @include mq('900px') {
     display: none;
   }
   &:hover &__middle button {
@@ -466,6 +472,12 @@ $icon-upcoming: #692fc2;
 }
 /* Show Confirm Delete
   ============================================ */
+.project-menu-setting__overlay {
+  @include overlay();
+  position: fixed;
+  z-index: 0;
+  background-color: transparent;
+}
 .project-menu-setting {
   @include box-overlay();
   display: block;
@@ -591,8 +603,13 @@ $icon-upcoming: #692fc2;
   &__overlay {
     @include overlay();
   }
+  &__modal {
+    @include overlay();
+    z-index: 1;
+  }
   &__inner {
     @include overlay__inner();
+    z-index: 1000;
     h2 {
       font-size: 20px;
       margin: 0;
@@ -655,18 +672,26 @@ $icon-upcoming: #692fc2;
 
   &__submit {
     @include btn(68px);
+    &[disabled] {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
   }
 }
 /* Show Confirm Delete
   ============================================ */
-.project-delete-modal {
+.project-custom-modal {
   @include overlay();
+  &__overlay {
+    @include overlay();
+    z-index: 1;
+  }
   &__inner {
     @include overlay__inner();
-
+    z-index: 2000;
     p {
       margin-top: 5px;
-      margin-bottom: 5px;
+      margin-bottom: 20px;
       line-height: normal;
       font-weight: normal;
       font-size: 15px;
@@ -751,6 +776,7 @@ $icon-upcoming: #692fc2;
       font-size: 14px;
       list-style-type: none;
       border-bottom: 1px solid #f0f0f0;
+      min-height: 57px;
 
       .checkbox-holder {
         margin-right: 15px;
@@ -768,7 +794,8 @@ $icon-upcoming: #692fc2;
         }
       }
     }
-    &-description {
+    .task-date-desc,
+    .task-description {
       color: grey;
       flex-basis: 100%;
       font-size: 12px;
@@ -778,6 +805,9 @@ $icon-upcoming: #692fc2;
       -webkit-line-clamp: 1;
       -webkit-box-orient: vertical;
       overflow: hidden;
+    }
+    .task-date-desc {
+      color: $general-bg;
     }
   }
 }
@@ -863,6 +893,10 @@ $icon-upcoming: #692fc2;
   }
 
   &__submit {
+    &[disabled] {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
     @include btn(90px);
   }
 
@@ -906,6 +940,12 @@ $icon-upcoming: #692fc2;
 }
 /* Task Date
   ============================================ */
+.task-date__overlay {
+  @include overlay();
+  z-index: 0;
+  position: fixed;
+  background-color: transparent;
+}
 .task-date {
   @include box-overlay();
   background-color: #fff;
@@ -959,6 +999,12 @@ $icon-upcoming: #692fc2;
 }
 /* Project Overlay
   ============================================ */
+.project-selection__overlay {
+  @include overlay();
+  z-index: 0;
+  position: fixed;
+  background-color: transparent;
+}
 .project-selection {
   @include box-overlay();
   background-color: white;
@@ -1006,5 +1052,36 @@ $icon-upcoming: #692fc2;
     word-break: break-word;
     word-wrap: anywhere;
     text-align: left;
+  }
+}
+/* Project type
+  ============================================ */
+
+.project-type {
+  &__select {
+    background-color: #ccc;
+    display: inline-flex;
+    border-radius: 20px;
+    padding: 2px;
+    button {
+      border-radius: 20px;
+      font-size: 14px;
+      border: 1px solid transparent;
+      background-color: transparent;
+      padding: 0 12px;
+      cursor: pointer;
+      padding: 7px 15px;
+      & + button {
+        margin-left: 5px;
+      }
+      &.active {
+        background-color: #fff;
+      }
+    }
+  }
+  ul {
+    padding-top: 20px;
+    margin-top: 20px;
+    border-top: 1px solid #ccc;
   }
 }

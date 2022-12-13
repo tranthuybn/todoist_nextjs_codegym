@@ -27,7 +27,7 @@ function Header() {
               </button>
             </li>
             <li className="nav__main-item">
-              <Link href="/app/TODAY">
+              <Link href="/app/projects/today">
                 <button>
                   <VscHome />
                 </button>

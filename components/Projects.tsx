@@ -1,12 +1,9 @@
-import { useState } from 'react';
-
 import IndividualProject from './IndividualProject';
 import { useSelectedProjectValue, useProjectsValue } from '~/context';
 
 function Projects() {
   const { projects } = useProjectsValue();
-  const { selectedProject, setSelectedProject } = useSelectedProjectValue();
-  const [active, setActive] = useState(false);
+  const { selectedProject } = useSelectedProjectValue();
   return (
     <ul className="sidebar__projects">
       {projects.length > 0 && (

@@ -3,9 +3,9 @@ import { useProjects } from '../hooks';
 
 export const ProjectsContext = createContext();
 export const ProjectsProvider = ({ children }) => {
-  const { projects, setProjects } = useProjects();
+  const { projects, setProjects, archivedProjects } = useProjects();
   return (
-    <ProjectsContext.Provider value={{ projects, setProjects }}>
+    <ProjectsContext.Provider value={{ projects, setProjects, archivedProjects }}>
       {children}
     </ProjectsContext.Provider>
   );

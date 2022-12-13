@@ -16,6 +16,7 @@ function AddProject({ showAddProject, setShowAddProject }: any) {
   return (
     <div className="add-project">
       <div className="add-project__overlay">
+        <div onClick={() => setShowAddProject(false)} className="add-project__modal"></div>
         <div className="add-project__inner">
           <h2>Add Project</h2>
           <div className="add-project__inner-content">
@@ -52,7 +53,11 @@ function AddProject({ showAddProject, setShowAddProject }: any) {
             >
               Cancel
             </button>
-            <button onClick={() => handleAddProject()} className="add-project__submit">
+            <button
+              disabled={!projectName}
+              onClick={() => handleAddProject()}
+              className="add-project__submit"
+            >
               Add
             </button>
           </div>

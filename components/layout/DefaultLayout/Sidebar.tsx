@@ -13,7 +13,7 @@ function Sidebar() {
       <MainProjects />
       <div className="sidebar__middle">
         <h2>
-          <Link href="/app/projects/active">Projects</Link>
+          <Link href="/app/projects">Projects</Link>
         </h2>
 
         <div>

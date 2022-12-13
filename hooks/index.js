@@ -3,9 +3,10 @@ import { useState, useEffect } from 'react';
 
 import { firebase } from '~/firebase';
 import { isMainProject } from '~/check';
+import { initialTask, projectInit } from '~/constants';
 
 export const useTasks = (selectedProject) => {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState([initialTask]);
   const [archivedTasks, setArchivedTasks] = useState([]);
   useEffect(() => {
     let unsubcribe = firebase
@@ -31,7 +32,7 @@ export const useTasks = (selectedProject) => {
         selectedProject === 'upcoming'
           ? newTasks.filter(
               (task) =>
-                moment(task.date, 'DD-MM-YYYY').diff(moment(), 'day') <= 7 && task.archived !== true
+                moment(task.date, 'DD-MM-YYYY').diff(moment(), 'day') >= 0 && task.archived !== true
             )
           : newTasks.filter((task) => task.archived !== true)
       );
@@ -43,8 +44,8 @@ export const useTasks = (selectedProject) => {
 };
 
 export const useProjects = () => {
-  const [projects, setProjects] = useState([]);
-  const [archivedProjects, setArchivedProjects] = useState([]);
+  const [projects, setProjects] = useState([projectInit]);
+  const [archivedProjects, setArchivedProjects] = useState([projectInit]);
   useEffect(() => {
     firebase
       .firestore()
