@@ -47,5 +47,4 @@ function Tasks() {
     </DefaultLayout>
   );
 }
-
 export default Tasks;
