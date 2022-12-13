@@ -11,7 +11,15 @@ import { useSelectedProjectValue } from '~/context';
 import { projectInit } from '~/constants';
 import { IProject } from '~/interface';
 
-function AddTask({ shouldShowAddTask = true, showQuickAddTask, setShowQuickAddTask }: any) {
+function AddTask({
+  shouldShowAddTask = true,
+  showQuickAddTask,
+  setShowQuickAddTask,
+}: {
+  shouldShowAddTask: boolean;
+  showQuickAddTask: boolean;
+  setShowQuickAddTask: any;
+}) {
   const [showAddTaskMain, setShowAddTaskMain] = useState(false);
   const [showAddTask, setShowAddTask] = useState(true);
   const [task, setTask] = useState('');

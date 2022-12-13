@@ -1,5 +1,5 @@
 import { firebase } from '~/firebase';
-function Checkbox({ id }: any) {
+function Checkbox({ id }: { id: string }) {
   const archiveTask = () => {
     firebase.firestore().collection('tasks').doc(id).update({ archived: true });
   };

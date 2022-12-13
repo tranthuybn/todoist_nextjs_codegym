@@ -3,7 +3,13 @@ import { VscCircleFilled } from 'react-icons/vsc';
 import { addProject } from '~/custom/project';
 import { generatePushId } from '~/check';
 import { useProjectsValue } from '~/context';
-function AddProject({ showAddProject, setShowAddProject }: any) {
+function AddProject({
+  showAddProject,
+  setShowAddProject,
+}: {
+  showAddProject: boolean;
+  setShowAddProject: any;
+}) {
   const [projectName, setProjectName] = useState('');
   const { projects, setProjects } = useProjectsValue();
   const projectID = generatePushId();
