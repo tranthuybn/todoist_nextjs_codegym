@@ -16,34 +16,36 @@ function Tasks() {
   });
   return (
     <DefaultLayout>
-      <div className="tasks__head">
-        <h2>{projectName}</h2>
-        <span className="date-now">{new Date().toDateString()}</span>
-      </div>
-      <ul className="tasks__list">
-        {tasks.length > 0 &&
-          tasks.map((task) => (
-            <li key={task.id}>
-              <Checkbox id={task.id} />
-              <div>
-                <span>{task.task}</span>
-                <span className="task-description">{task.description}</span>
-                {selectedProject === 'upcoming' && (
-                  <span
-                    className={
-                      moment(task.date, 'DD/MM/YYYY').diff(moment(), 'day') <= 2
-                        ? 'warning task-date-desc'
-                        : 'task-date-desc'
-                    }
-                  >
-                    {moment(task.date, 'DD/MM/YYYY').format('DD MMM')}
-                  </span>
-                )}
-              </div>
-            </li>
-          ))}
-      </ul>
-      <AddTask />
+      <>
+        <div className="tasks__head">
+          <h2>{projectName}</h2>
+          <span className="date-now">{new Date().toDateString()}</span>
+        </div>
+        <ul className="tasks__list">
+          {tasks.length > 0 &&
+            tasks.map((task) => (
+              <li key={task.id}>
+                <Checkbox id={task.id} />
+                <div>
+                  <span>{task.task}</span>
+                  <span className="task-description">{task.description}</span>
+                  {selectedProject === 'upcoming' && (
+                    <span
+                      className={
+                        moment(task.date, 'DD/MM/YYYY').diff(moment(), 'day') <= 2
+                          ? 'warning task-date-desc'
+                          : 'task-date-desc'
+                      }
+                    >
+                      {moment(task.date, 'DD/MM/YYYY').format('DD MMM')}
+                    </span>
+                  )}
+                </div>
+              </li>
+            ))}
+        </ul>
+        <AddTask />
+      </>
     </DefaultLayout>
   );
 }

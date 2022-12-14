@@ -3,7 +3,8 @@ import { useState } from 'react';
 import { VscCircleFilled, VscEllipsis, VscClose, VscTrash, VscArchive } from 'react-icons/vsc';
 import { useProjectsValue, useSelectedProjectValue } from '~/context';
 import { deleteProject, archiveProject } from '~/custom/project';
-function IndividualProject({ project }: any) {
+import { Project } from '~/interface';
+function IndividualProject({ project }: { project: Project }) {
   const [showMenuSetting, setShowMenuSetting] = useState(false);
   const { projects, setProjects } = useProjectsValue();
   const { setSelectedProject } = useSelectedProjectValue();

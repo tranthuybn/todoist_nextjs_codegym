@@ -5,7 +5,7 @@ import AddProject from '~/components/AddProject';
 import MainProjects from '~/components/MainProjects';
 import Projects from '~/components/Projects';
 import Link from 'next/link';
-function Sidebar() {
+function Sidebar(): JSX.Element {
   const [showProjects, setShowProjects] = useState(false);
   const [showAddProject, setShowAddProject] = useState(false);
   return (

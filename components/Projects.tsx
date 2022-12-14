@@ -1,6 +1,6 @@
 import IndividualProject from './IndividualProject';
 import { useSelectedProjectValue, useProjectsValue } from '~/context';
-
+import { Project } from '~/interface';
 function Projects() {
   const { projects } = useProjectsValue();
   const { selectedProject } = useSelectedProjectValue();
@@ -8,7 +8,7 @@ function Projects() {
     <ul className="sidebar__projects">
       {projects.length > 0 && (
         <>
-          {projects.map((project: any) => (
+          {projects.map((project: Project) => (
             <li
               className={
                 selectedProject === project.projectID

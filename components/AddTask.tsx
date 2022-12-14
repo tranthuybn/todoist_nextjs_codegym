@@ -9,22 +9,18 @@ import ProjectSelection from './ProjectSelection';
 import TaskDate from './TaskDate';
 import { useSelectedProjectValue } from '~/context';
 import { projectInit } from '~/constants';
-import { IProject } from '~/interface';
+import { Project, AddTaskProps } from '~/interface';
 
 function AddTask({
   shouldShowAddTask = true,
-  showQuickAddTask,
-  setShowQuickAddTask,
-}: {
-  shouldShowAddTask: boolean;
-  showQuickAddTask: boolean;
-  setShowQuickAddTask: any;
-}) {
+  showQuickAddTask = false,
+  setShowQuickAddTask = () => {},
+}: Partial<AddTaskProps>) {
   const [showAddTaskMain, setShowAddTaskMain] = useState(false);
   const [showAddTask, setShowAddTask] = useState(true);
   const [task, setTask] = useState('');
   const [description, setDescription] = useState('');
-  const [project, setProject] = useState<IProject>(projectInit);
+  const [project, setProject] = useState<Project>({} as Project);
   const [taskDate, setTaskDate] = useState('');
   const [showProjectSelection, setShowProjectSelection] = useState(false);
   const [showTaskDate, setShowTaskDate] = useState(false);
@@ -51,7 +47,7 @@ function AddTask({
         })
         .then(() => {
           setTask('');
-          setProject(projectInit);
+          setProject({} as Project);
           setDescription('');
           setShowProjectSelection(false);
           setShowAddTask(!showAddTask);

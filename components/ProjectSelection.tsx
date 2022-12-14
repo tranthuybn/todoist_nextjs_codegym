@@ -1,7 +1,12 @@
 import { useProjectsValue } from '~/context';
 import { VscCircleFilled } from 'react-icons/vsc';
+import { Project, ProjectSelectionProps } from '~/interface';
 
-function ProjectSelection({ setProject, showProjectSelection, setShowProjectSelection }: any) {
+function ProjectSelection({
+  setProject = (project: Project) => {},
+  showProjectSelection,
+  setShowProjectSelection,
+}: ProjectSelectionProps) {
   const { projects } = useProjectsValue();
 
   return (
@@ -14,7 +19,7 @@ function ProjectSelection({ setProject, showProjectSelection, setShowProjectSele
           ></span>
           <div className="project-selection">
             <ul className="project-selection__list">
-              {projects.map((project: any) => (
+              {projects.map((project: Project) => (
                 <li key={project.projectID}>
                   <div
                     onClick={() => {

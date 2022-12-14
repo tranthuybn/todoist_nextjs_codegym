@@ -1,7 +1,9 @@
 import Header from './Header';
 import Sidebar from './Sidebar';
 import { useThemeValue } from '~/context';
-function DefaultLayout({ children }: any) {
+import { AppProps } from '~/interface';
+
+function DefaultLayout({ children }: AppProps): JSX.Element {
   const { theme } = useThemeValue();
   return (
     <div className={`theme ${theme}`}>

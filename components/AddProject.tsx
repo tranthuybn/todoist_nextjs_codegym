@@ -8,7 +8,7 @@ function AddProject({
   setShowAddProject,
 }: {
   showAddProject: boolean;
-  setShowAddProject: any;
+  setShowAddProject: (showAddProject: boolean) => void;
 }) {
   const [projectName, setProjectName] = useState('');
   const { projects, setProjects } = useProjectsValue();

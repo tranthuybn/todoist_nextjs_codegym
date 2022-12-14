@@ -12,7 +12,7 @@ import { useState } from 'react';
 import AddTask from '~/components/AddTask';
 import { useThemeValue } from '~/context';
 import { themes } from '~/constants';
-function Header() {
+function Header(): JSX.Element {
   const [showQuickAddTask, setShowQuickAddTask] = useState(false);
   const { setTheme } = useThemeValue();
   const [showThemes, setShowThemes] = useState(false);
